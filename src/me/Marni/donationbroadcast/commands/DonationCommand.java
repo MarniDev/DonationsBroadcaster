@@ -11,27 +11,19 @@ import org.bukkit.command.CommandSender;
  */
 public class DonationCommand implements CommandExecutor {
 
+    /** This handles the commmand sent when a player uses "/BDonation" */
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("BDonation")) {
-            if (args.length == 0) {
-                ((CommandSender) sender).sendMessage("Incorrect usage!" + ChatColor.DARK_RED + "Please use /Bdonation <username> <rank> !");
-                return true;
-            }
-        }
-        if (cmd.getName().equalsIgnoreCase("BDonation")) {
-            if (args.length == 1) {
-                ((CommandSender) sender).sendMessage("Incorrect usage!" + ChatColor.DARK_RED + "Please use /Bdonation <username> <rank> !");
-                return true;
-            }
-        }
-        if (cmd.getName().equalsIgnoreCase("BDonation")) {
-            if (args.length == 2) {
+        /** A switch statement changes depending on the value returned by the operation */
+        switch (args.length) {
+            /** In this case, when the args.length == 2 it will execute the contained code */
+            case 2:
                 Bukkit.getServer().broadcastMessage(args[0] + "Just bought" + args[1] + "on our website!");
-                return true;
-            }
+                return true; //Return true when the command succeeds
+            /** In ALL OTHER CASES, this is the code that will execute */
+            default:
+                sender.sendMessage("Incorrect usage!" + ChatColor.DARK_RED + "Please use /Bdonation <username> <rank> !");
+                return false; //Return false when the command fails
         }
-
-        return false;
     }
 }
