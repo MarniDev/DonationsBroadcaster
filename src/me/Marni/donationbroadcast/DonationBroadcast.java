@@ -1,22 +1,23 @@
 package me.Marni.donationbroadcast;
 
-import me.Marni.donationbroadcast.commands.DonationCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.PluginManager;
 
-public class DonationBroadcast extends JavaPlugin  {
-	
-	public void onEnable(){
-		Bukkit.getServer().getLogger().info("Donation broadcasts are now enabled!");
+public class Donationbroadcast extends JavaPlugin  {
+    public Permission playerPermission = new Permission("Bdonation.use");
 
-		this.getCommand("BDonation").setExecutor(new DonationCommand());
-		
-	}
-	public void OnDisable(){
-		Bukkit.getServer().getLogger().info("Donation broadcasts are now disabled!");
-	}
+    public void onEnable(){
+        Bukkit.getServer().getLogger().info("Donation broadcasts are now enabled!");
+
+        this.getCommand("BDonation").setExecutor(new DonationCommand());
+        PluginManager pm = getServer().getPluginManager();
+        pm.addPermission(playerPermission);
+
+    }
+    public void OnDisable(){
+        Bukkit.getServer().getLogger().info("Donation broadcasts are now disabled!");
+    }
 
 }
